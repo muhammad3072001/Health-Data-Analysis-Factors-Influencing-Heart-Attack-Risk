@@ -27,7 +27,6 @@ st.subheader('Enter the following details')
 age = st.number_input('Age', min_value=20, max_value=100, value=50)
 sex = st.selectbox('Sex', ['Male', 'Female'])
 cholesterol = st.selectbox('Cholesterol Level', ['Normal', 'Above Normal', 'Well Above Normal'])
-blood_pressure = st.selectbox('Blood Pressure', ['Normal', 'High', 'Very High'])
 heart_rate = st.number_input('Heart Rate', min_value=40, max_value=200, value=70)
 diabetes = st.selectbox('Diabetes', ['Yes', 'No'])
 family_history = st.selectbox('Family History of Heart Disease', ['Yes', 'No'])
@@ -45,16 +44,14 @@ bmi = st.number_input('BMI', min_value=10.0, max_value=50.0, value=25.0)
 triglycerides = st.number_input('Triglycerides Level', min_value=50, max_value=500, value=150)
 physical_activity_days = st.number_input('Physical Activity Days per Week', min_value=0, max_value=7, value=3)
 sleep_hours = st.number_input('Sleep Hours per Day', min_value=0, max_value=24, value=7)
-country = st.selectbox('Country', ['USA', 'India', 'UK', 'Canada', 'Australia'])  # Example countries
-continent = st.selectbox('Continent', ['North America', 'Asia', 'Europe', 'Oceania'])
-hemisphere = st.selectbox('Hemisphere', ['Northern', 'Southern'])
+bp_systolic = st.number_input('BP Systolic', min_value=80, max_value=200, value=120)
+bp_diastolic = st.number_input('BP Diastolic', min_value=50, max_value=120, value=80)
 
 # Prepare the user input data as a list for prediction
 user_data = [
     age,
     1 if sex == 'Male' else 0,  # Encoding sex as binary
     1 if cholesterol == 'Above Normal' else (2 if cholesterol == 'Well Above Normal' else 0),  # Encoding cholesterol levels
-    1 if blood_pressure == 'High' else (2 if blood_pressure == 'Very High' else 0),  # Encoding BP levels
     heart_rate,
     1 if diabetes == 'Yes' else 0,
     1 if family_history == 'Yes' else 0,
@@ -72,9 +69,8 @@ user_data = [
     triglycerides,
     physical_activity_days,
     sleep_hours,
-    1 if country == 'USA' else 0,  # You could add country encoding if necessary
-    1 if continent == 'North America' else 0,  # Similar for continent encoding
-    1 if hemisphere == 'Northern' else 0  # Hemisphere encoding
+    bp_systolic,
+    bp_diastolic
 ]
 
 # Display prediction when user hits the button
